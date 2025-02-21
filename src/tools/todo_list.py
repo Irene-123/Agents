@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 
 from langchain.agents import tool
-
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -39,7 +38,6 @@ def add_task_to_todo_list(task_with_deadline: str) -> str:
     model_chain = prompt_template | model | output_parser
 
     response = model_chain.invoke({"input_text": task_with_deadline, "date": datetime.today().date()})
-    print(response)
     task, deadline = json.loads(response)['Task'], json.loads(response)['Deadline']
     if deadline == 'Not Present':
         deadline = datetime.today().date()
@@ -47,7 +45,6 @@ def add_task_to_todo_list(task_with_deadline: str) -> str:
         deadline = datetime.strptime(deadline, '%Y-%m-%d').date()
 
     user_todo_list.append({"task": task, "deadline": deadline, "added_on": datetime.today().date()})
-    print(user_todo_list)
     return f'I will make sure to remind you about {task}'
 
 @tool
@@ -64,5 +61,5 @@ def show_all_tasks_in_todo_list(input="") -> str:
     """
     response = "You have the following tasks in your todo list: \n"
     for task in user_todo_list:
-        response += f"{task['task']}, {task['deadline']}, was added on {task['added_on']}\n"
+        response += f"{task['task']}, with deadline of {task['deadline']}, was added on {task['added_on']}\n"
     return response

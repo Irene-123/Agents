@@ -6,6 +6,7 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 
 from src.tools.todo_list import add_task_to_todo_list, show_all_tasks_in_todo_list
 from src.models.azure_model import model
+from src.speech_capability import speak_message, get_user_input
 
 
 tools = [add_task_to_todo_list, show_all_tasks_in_todo_list]
@@ -16,7 +17,7 @@ memory = ConversationBufferWindowMemory(
 )
 
 conversational_agent = initialize_agent(
-    agent='chat-conversational-react-description',  # Changed agent type
+    agent='chat-conversational-react-description',
     tools=tools,
     llm=model,
     memory=memory,
@@ -25,7 +26,11 @@ conversational_agent = initialize_agent(
     early_stopping_method='generate'
 )
 
-conversational_agent("Add a task to buy the groceries")
-conversational_agent("Make sure I dont forget to pay my electricity bill on 10th")
-conversational_agent("Remind me to call the doctor tomorrow")
-conversational_agent("Show me all my tasks")
+if __name__ == '__main__':
+    while True:
+        user_input = get_user_input().lstrip()
+        if user_input != "" and "tars" in user_input.lower():
+            print("HUMAN: ", user_input)
+            response = conversational_agent.invoke(user_input, return_only_outputs=True)
+            print("BOT: ", response['output'])
+            speak_message(response['output'])
