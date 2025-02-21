@@ -29,7 +29,7 @@ conversational_agent = initialize_agent(
 if __name__ == '__main__':
     while True:
         user_input = get_user_input().lstrip()
-        if user_input != "" and "tars" in user_input.lower():
+        if user_input != "":
             print("HUMAN: ", user_input)
             response = conversational_agent.invoke(user_input, return_only_outputs=True)
             print("BOT: ", response['output'])
