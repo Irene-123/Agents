@@ -16,6 +16,7 @@ def add_task_to_todo_list(task_with_deadline: str) -> str:
     :param task: The task that user wants to add to his todo list, it may or may not come with deadline. 
     If the deadline is not given by the user, then it should be set to today by default.
     :return: A message that confirms that the task has been added to the todo list
+    Make sure to add the task to the database as well if you use this tool.
 
     Some sample prompts that should work with this tool:
     - Add a task to buy the groceries
