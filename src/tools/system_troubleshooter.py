@@ -57,6 +57,11 @@ def run_diagnosis(input_text: str) -> str:
     print(user_response)
     return json.loads(user_response)['response']
 
-    probable_issues.append(json.loads(response)['Probable Issues'])
-    return json.loads(response)['Probable Issues']
 
+@tool
+def execute_troubleshooting(input_text: str) -> str:
+    """
+    Execute the troubleshooting script and return the output.
+    :return: The output of the troubleshooting script.
+    """
+    pass
