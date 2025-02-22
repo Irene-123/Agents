@@ -1,6 +1,6 @@
 # Conversational Agent Project
 
-This project implements a conversational agent using LangChain, Azure AI, and speech recognition capabilities. The agent can add tasks to a to-do list, show all tasks, and respond to user inputs.
+This project implements a conversational agent using LangChain, Azure AI, and speech recognition capabilities. The agent can add tasks to a to-do list, show all tasks, query a database, and respond to user inputs about PC settings.
 
 ## Project Structure
 
@@ -12,9 +12,14 @@ This project implements a conversational agent using LangChain, Azure AI, and sp
 ├── .gitignore
 ├── src
 │   ├── tools
-│   │   └── todo_list.py
+│   │   ├── todo_list.py
+│   │   ├── query_db.py
+│   │   └── talk_to_your_pc.py
 │   ├── models
 │   │   └── azure_model.py
+│   ├── database
+│   │   ├── db_prompt.py
+│   │   └── connection.py
 │   └── speech_capability.py
 └── README.md
 ```
@@ -53,8 +58,34 @@ This project implements a conversational agent using LangChain, Azure AI, and sp
     ```
 
 2. **Interact with the agent:**
-    - The agent listens for user input through the microphone.
-    - You can add tasks to the to-do list or ask the agent to show all tasks.
+    - The agent listens for user input through the microphone or text input.
+    - You can add tasks to the to-do list, ask the agent to show all tasks, query the database, or get information about PC settings.
+
+## Functionalities
+
+1. **Add Task to To-Do List:**
+    - Adds a task to the user's to-do list with an optional deadline.
+    - Example prompts: 
+        - "Add a task to buy the groceries"
+        - "Remind me to go to the doctor tomorrow"
+
+2. **Show All Tasks in To-Do List:**
+    - Displays all tasks currently in the user's to-do list.
+    - Example prompts:
+        - "Show me all my tasks"
+        - "What are the tasks that I have in my to-do list?"
+
+3. **Query Database:**
+    - Executes SQL queries on the database based on user input.
+    - Example prompts:
+        - "Get all tasks with a deadline of today"
+        - "Show all completed tasks"
+
+4. **Get PC Settings:**
+    - Provides information about the PC settings and installed software.
+    - Example prompts:
+        - "What is the current volume of my PC?"
+        - "What are available wifi networks right now?"
 
 ## Tools and Libraries Used
 
