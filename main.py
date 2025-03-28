@@ -7,12 +7,12 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from src.tools.todo_list import add_task_to_todo_list, show_all_tasks_in_todo_list
 from src.tools.query_db import get_results_from_database
 from src.tools.talk_to_your_pc import get_pc_settings
-from src.tools.system_troubleshooter import run_diagnosis
+from src.tools.system_troubleshooter import run_diagnosis, execute_troubleshooting
 from src.models.azure_model import model
 from src.speech_capability import speak_message, get_user_input
 
 
-tools = [add_task_to_todo_list, show_all_tasks_in_todo_list, get_results_from_database, get_pc_settings, run_diagnosis]
+tools = [add_task_to_todo_list, show_all_tasks_in_todo_list, get_results_from_database, get_pc_settings, run_diagnosis, execute_troubleshooting]
 memory = ConversationBufferWindowMemory(
     memory_key='chat_history',
     k=10,
